@@ -57,7 +57,8 @@ class Visualisation:
         while not self.done:
             self.__handle_events__()
 
-            if not self.editable and not self.paused:
+            #if not self.editable and not self.paused:
+            if not self.paused:
                 self.simulator.update()
 
             self.__redraw__()
@@ -65,7 +66,7 @@ class Visualisation:
             if self.editable:
                 self.clock.tick(10) # 10 fps when editing (for responsiveness)
             else:
-                self.clock.tick(2) # 2 fps otherwise (to slow down simulation)
+                self.clock.tick(3) # 2 fps otherwise (to slow down simulation)
 
     def __handle_events__(self) -> None:
         """
@@ -86,7 +87,7 @@ class Visualisation:
                             self.simulator.get_world().set(x, y, newValue)
                 if mouseX > self.size[0] - panelWidth + margin and mouseX < self.size[0] - margin:
                     if mouseY > margin*3 and mouseY < margin*3+buttonHeight:
-                        self.editable = False
+                        #self.editable = False
                         self.paused = not self.paused
 
     def __determineScale__(self) -> None:
