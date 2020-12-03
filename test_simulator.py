@@ -77,5 +77,14 @@ class TestSimulator(TestCase):
         self.sim.update()
         self.assertEqual(self.sim.world.get(2, 2), 0)
 
+#3.Any live cell with more than three live neighbours dies, as if by overpopulation.
 
+    def test_rule3_overpopulation(self):
+        self.sim.world.set(2, 1, 1)
+        self.sim.world.set(2, 2, 1)
+        self.sim.world.set(2, 3, 1)
+        self.sim.world.set(1, 2, 1)
+        self.sim.world.set(3, 2, 1)
 
+        self.sim.update()
+        self.assertEqual(self.sim.world.get(2, 2), 0)
