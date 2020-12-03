@@ -68,12 +68,14 @@ class TestSimulator(TestCase):
 
     def test_rule2_survive(self):
         # 2.Any live cell with two or three live neighbours lives on to the next generation.
-        self.sim.world.set(5, 4, 1)
-        self.sim.world.set(5, 5, 1)
-        self.sim.world.set(5, 6, 1)
-        self.sim.world.set(5, 7, 1)
+        self.sim.world.set(2, 1, 1)
+        self.sim.world.set(2, 2, 1)
+        self.sim.world.set(2, 3, 1)
+        self.sim.world.set(1, 2, 1)
+        self.sim.world.set(3, 2, 1)
+
         self.sim.update()
-        self.assertEqual(self.sim.world.get(5, 4), 0)
-        self.assertEqual(self.sim.world.get(5, 5), 1)
-        self.assertEqual(self.sim.world.get(5, 6), 1)
-        self.assertEqual(self.sim.world.get(5, 6), 0)
+        self.assertEqual(self.sim.world.get(2, 2), 0)
+
+
+
