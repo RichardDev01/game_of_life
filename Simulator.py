@@ -1,9 +1,18 @@
 from World import *
+import copy
+
 
 class Simulator:
     """
     Game of Life simulator. Handles the evolution of a Game of Life ``World``.
     Read https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life for an introduction to Conway's Game of Life.
+
+
+    1.Any live cell with fewer than two live neighbours dies, as if by underpopulation.
+    2.Any live cell with two or three live neighbours lives on to the next generation.
+    3.Any live cell with more than three live neighbours dies, as if by overpopulation.
+    4.Any dead cell with exactly three live neighbours becomes a live cell, as if by reproduction.
+
     """
 
     def __init__(self, world = None):
@@ -24,11 +33,24 @@ class Simulator:
 
         :return: New state of the world.
         """
+
+        # copy.deepcopy()
+
+        #Copy current state of the world for processing
+        world_init = copy.deepcopy(self.world)
+
+        self.world.height
+
+        for x in range(self.world.width):
+            for y in range(self.world.height):
+                neighbour_count = np.count_nonzero(world_init.get_neighbours(x, y))
+
+                status_count = world_init.get(x,y)
+
+                #print(neighbour_count,status_count)
+
+
         self.generation += 1
-
-        #self.world.world[0][0] = 1
-        #TODO: Do something to evolve the generation
-
         return self.world
 
     def get_generation(self):
