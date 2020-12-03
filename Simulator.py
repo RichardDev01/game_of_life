@@ -54,8 +54,9 @@ class Simulator:
                     self.world.set(x, y, 0)
 
                 #rule 2
-                if neighbour_count != 2 or neighbour_count != 3:
-                    self.world.set(x, y, 0)
+                if neighbour_count == 2 or neighbour_count == 3:
+                    if status_count != 1:
+                        self.world.set(x, y, 0)
 
                 #rule 3
                 if neighbour_count > 3:
