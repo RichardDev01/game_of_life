@@ -87,6 +87,10 @@ class Visualisation:
                         newValue = (oldValue + 1) % 9
                         if self.editable:
                             self.simulator.get_world().set(x, y, newValue)
+                if mouseX > self.size[0] - panelWidth + margin and mouseX < self.size[0] - margin:
+                    if mouseY > margin*3 and mouseY < margin*3+buttonHeight:
+                        #self.editable = False
+                        self.paused = not self.paused
 
             # Right mouse click detection
             if event.type == pygame.MOUSEBUTTONDOWN and event.button == 3:
