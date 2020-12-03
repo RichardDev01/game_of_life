@@ -75,7 +75,9 @@ class Visualisation:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 self.done = True
-            if event.type == pygame.MOUSEBUTTONDOWN:
+
+            # Left mouse click detection
+            if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
                 (mouseX, mouseY) = pygame.mouse.get_pos()
                 if mouseX > self.scaled_margin and mouseX < self.scaled_margin + self.simulator.get_world().width * self.scaled_margin:
                     if mouseY > self.scaled_margin and mouseY < self.scaled_margin + self.simulator.get_world().height * self.scaled_margin:
@@ -85,6 +87,19 @@ class Visualisation:
                         newValue = (oldValue + 1) % 9
                         if self.editable:
                             self.simulator.get_world().set(x, y, newValue)
+
+            # Right mouse click detection
+            if event.type == pygame.MOUSEBUTTONDOWN and event.button == 3:
+                (mouseX, mouseY) = pygame.mouse.get_pos()
+                if mouseX > self.scaled_margin and mouseX < self.scaled_margin + self.simulator.get_world().width * self.scaled_margin:
+                    if mouseY > self.scaled_margin and mouseY < self.scaled_margin + self.simulator.get_world().height * self.scaled_margin:
+                        x = floor((mouseX - self.scaled_margin) / self.scaled_margin)
+                        y = floor((mouseY - self.scaled_margin) / self.scaled_margin)
+                        oldValue = self.simulator.get_world().get(x, y)
+                        newValue = 0
+                        if self.editable:
+                            self.simulator.get_world().set(x, y, newValue)
+
                 if mouseX > self.size[0] - panelWidth + margin and mouseX < self.size[0] - margin:
                     if mouseY > margin*3 and mouseY < margin*3+buttonHeight:
                         #self.editable = False
