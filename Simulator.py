@@ -48,9 +48,17 @@ class Simulator:
                 status_count = world_init.get(x,y)
 
                 #print(neighbour_count,status_count)
-                if neighbour_count < 2:
+
+                # #rule 1
+                # if neighbour_count < 2:
+                #     self.world.set(x, y, 0)
+
+                #rule 2
+                if neighbour_count == 2 or neighbour_count == 3:
+                    self.world.set(x, y, 1)
+                else:
                     self.world.set(x, y, 0)
-                    #status_count(x,y , neighbour_count < 2)
+
 
 
         self.generation += 1
