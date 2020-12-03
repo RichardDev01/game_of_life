@@ -52,11 +52,15 @@ class Simulator:
                 # #rule 1
                 # if neighbour_count < 2:
                 #     self.world.set(x, y, 0)
+                #
+                # #rule 2
+                # if neighbour_count == 2 or neighbour_count == 3:
+                #     self.world.set(x, y, 1)
+                # else:
+                #     self.world.set(x, y, 0)
 
-                #rule 2
-                if neighbour_count == 2 or neighbour_count == 3:
-                    self.world.set(x, y, 1)
-                else:
+                #rule 3
+                if neighbour_count > 3:
                     self.world.set(x, y, 0)
 
 
