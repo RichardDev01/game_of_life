@@ -56,5 +56,14 @@ class TestSimulator(TestCase):
 
     def test_rule1_underpopulation(self):
         # 1.Any live cell with fewer than two live neighbours dies, as if by underpopulation.
-        self.sim.world.set(5, 5,1)
-        self.assertEqual(self.sim.world.get(5,5), 0)
+        self.sim.world.set(5, 4, 1)
+        self.sim.world.set(5, 5, 1)
+        self.sim.world.set(5, 6, 1)
+
+
+        self.sim.update()
+        # if np.count_nonzero(self.sim.world.get_neighbours(5,5)) < 2:
+        #     self.sim.world.set(5, 5, 0)
+        self.assertEqual(self.sim.world.get(5, 4), 0)
+        self.assertEqual(self.sim.world.get(5, 5), 1)
+        self.assertEqual(self.sim.world.get(5, 6), 0)
